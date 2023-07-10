@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Food Order Tracking - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style1.css">
+  </head>
+  <body>
+    
+
+    <div class="index-main-div">
+      <%- include("components/header.ejs") %>
+      <div class="index-hero-div d-flex flex-row">
+        <div class="index-hero-text d-flex flex-column">
+            <h2>Welcome to The World of Authentic Italian Cuisine</h2>
+              <div class="mask">
+                <span data-show>a theater</span>
+                <span>a gym</span>
+                <span>a concert hall</span>
+                <span>an arcade</span>
+              </div>
+            <div class="rotatingWrapper">
+              <div class="rotatingWord">
+                <span>Bicho</span>
+                <span>Fera</span>
+                <span>Meu</span>
+                <span>Mano</span>
+                <span>Brow</span>
+                <span>Bitcho</span>
+              </div>
+            </div>
+        </div>
+        <div class="index-hero-img">
+          <img class="index-hero-pizza-img" src="/images/pizza1.png" alt="pizza">
+          <!-- <div class="index-hero-img-bg"></div> -->
+        </div>
+      </div>
+    </div>
+
+<!-- <img src="/images/pizza1.png"> -->
+
+    <script>
+      window.onload = () => {
+        const navLinks = document.querySelectorAll(".nav-link");
+        for (let i = 0; i < navLinks.length; i++) {
+          if (navLinks[i].getAttribute("href") == "/") {
+            navLinks[i].classList.add("active");
+            break;
+          }
+        }
+      };
+
+      // function rotateWords () {
+      //     const show = document.querySelector('span[data-show]');
+      //     const next = show.nextElementSibling || document.querySelector('span:first-child');
+      //     const up = document.querySelector('span[data-up]');
+
+      //     if (up) {
+      //       up.removeAttribute('data-up');
+      //     }
+
+      //     show.removeAttribute('data-show');
+      //     show.setAttribute('data-up', '');
+
+      //     next.setAttribute('data-show', '');
+      //   }
+
+      // setInterval(rotateWords, 2000);
+      
+      
+   
+
+
+
+    </script>
+    <script src="/js/script1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
