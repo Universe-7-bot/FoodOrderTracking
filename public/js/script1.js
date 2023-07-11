@@ -12,9 +12,9 @@ function rotateWords() {
     setTimeout(() => {
         currentSpan.removeAttribute('data-up');
         nextSpan.setAttribute('data-show', '');
-    }, 500); // Delay the transition of removing and adding attributes
+    }, 500);
 
     counter = nextIndex;
 }
 
-setInterval(rotateWords, 2000); // Adjust the interval as needed
+setInterval(rotateWords, 2000);

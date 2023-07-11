@@ -13,33 +13,42 @@
     <div class="index-main-div">
       <%- include("components/header.ejs") %>
       <div class="index-hero-div d-flex flex-row">
-        <div class="index-hero-text d-flex flex-column">
-            <h2>Welcome to The World of Authentic Italian Cuisine</h2>
-              <div class="mask">
-                <span data-show>a theater</span>
-                <span>a gym</span>
-                <span>a concert hall</span>
-                <span>an arcade</span>
-              </div>
-            <div class="rotatingWrapper">
-              <div class="rotatingWord">
-                <span>Bicho</span>
-                <span>Fera</span>
-                <span>Meu</span>
-                <span>Mano</span>
-                <span>Brow</span>
-                <span>Bitcho</span>
-              </div>
+        <div class="index-hero-text d-flex align-items-center">
+          <div class="index-hero-text-container d-flex flex-column">
+            <p class="hero-text">
+              <span style="color: rgb(255, 209, 149);">Welcome </span>to <br>
+              <span>The World of</span> <br>
+              Authentic <span style="color: rgb(225,71,30);">Italian</span><span style="color: rgb(255, 209, 149);"> Cuisine</span>
+            </p>
+            <div class="mask">
+              <span data-show>Destination for Italian Pizzas</span>
+              <span>Gourmet Burgers!</span>
+              <span>Two Worlds in One Plate</span>
+              <span>Unique Pizza-Burger Experience!</span>
             </div>
+            <div class="hero-order">
+              <button class="hero-order-btn d-flex flex-row align-items-center justify-content-center">
+                <p class="hero-order-btn-text">Order Now</p>
+                <img class="hero-order-btn-icon" src="/images/order.svg" alt="order">
+              </button>
+            </div>
+          </div>
         </div>
         <div class="index-hero-img">
           <img class="index-hero-pizza-img" src="/images/pizza1.png" alt="pizza">
           <!-- <div class="index-hero-img-bg"></div> -->
         </div>
       </div>
+      <div class="index-menu">
+        <p>Explore Menu</p>
+        <div class="index-menu-pizza">
+          <p>Pizzas</p>
+        </div>
+        <div class="index-menu-burger">
+          <p>Burgers</p>
+        </div>
+      </div>
     </div>
-
-<!-- <img src="/images/pizza1.png"> -->
 
     <script>
       window.onload = () => {
@@ -51,29 +60,6 @@
           }
         }
       };
-
-      // function rotateWords () {
-      //     const show = document.querySelector('span[data-show]');
-      //     const next = show.nextElementSibling || document.querySelector('span:first-child');
-      //     const up = document.querySelector('span[data-up]');
-
-      //     if (up) {
-      //       up.removeAttribute('data-up');
-      //     }
-
-      //     show.removeAttribute('data-show');
-      //     show.setAttribute('data-up', '');
-
-      //     next.setAttribute('data-show', '');
-      //   }
-
-      // setInterval(rotateWords, 2000);
-      
-      
-   
-
-
-
     </script>
     <script src="/js/script1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
