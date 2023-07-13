@@ -14,19 +14,23 @@
 }
 
 .nav-item:hover {
-    border-bottom: 2px solid rgb(225, 71, 30);;
+    border-bottom: 2px solid rgb(225, 71, 30);
+    ;
 }
 
 .nav-link {
-    color: rgb(225, 71, 30);;
+    color: rgb(225, 71, 30);
+    ;
 }
 
 .nav-link:hover {
-    color: rgb(255, 111, 71);;
+    color: rgb(255, 111, 71);
+    ;
 }
 
 .active {
-    border-bottom: 2px solid rgb(225, 71, 30);;
+    border-bottom: 2px solid rgb(225, 71, 30);
+    ;
 }
 
 /* ------------ index-page ----------- */
@@ -163,7 +167,8 @@
 }
 
 .hero-order-btn-text {
-    color: rgb(221, 62, 18);;
+    color: rgb(221, 62, 18);
+    ;
     font-size: 20px;
     font-weight: bold;
     margin: 0 0.3rem 0 0;
@@ -172,4 +177,236 @@
 .hero-order-btn-icon {
     height: 25px;
     width: 25px;
+}
+
+/* index menu pizza*/
+.index-menu {
+    width: 100%;
+    background-color: rgb(248, 248, 233);
+    padding: 2rem;
+}
+
+.index-menu-heading {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+    margin: 0 0 0 0;
+    color: black;
+}
+
+.index-menu-pizza {
+    width: 100%;
+    padding: 1rem;
+}
+
+.index-menu-pizza-text {
+    margin: 0 0 0 0;
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+}
+
+.index-menu-pizza-row {
+    width: 100%;
+    row-gap: 1.5rem;
+    margin: 0.5rem 0 0 0;
+}
+
+.index-menu-pizza-card {
+    background-color: transparent;
+    border: none;
+}
+
+.index-menu-pizza-card-img-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-menu-pizza-card-img {
+    height: 200px;
+    width: 200px;
+}
+
+.index-menu-pizza-card-body {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgb(222, 222, 222);
+}
+
+.index-pizza-card-title-wrapper {
+    width: 100%;
+    margin: 0 0 0.5rem 0;
+}
+
+.index-pizza-card-title {
+    margin: 0 0 0 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(247, 145, 39);
+}
+
+.index-pizza-type {
+    background-color: rgb(247, 145, 39, 0.6);
+    color: rgb(231 71 24);
+    margin: 0 0 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgb(206, 206, 206);
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.index-pizza-card-text {
+    margin: 0 0 0.5rem 0;
+    font-size: 14px;
+    color: rgb(168, 168, 168);
+}
+
+.index-pizza-card-details {
+    width: 100%;
+    /* margin: 0.5rem 0 0 0; */
+}
+
+.index-pizza-card-price {}
+
+.index-rupee-icon {
+    height: 13px;
+    width: 13px;
+}
+
+.index-price-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(231 71 24);
+    margin: 0 0 0 0;
+}
+
+.index-pizza-add-btn-wrapper {}
+
+.index-pizza-add-cart-btn {
+    border: none;
+    background-color: rgb(247, 145, 39, 0.6);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgb(206, 206, 206);
+    padding: 0.5rem;
+    height: 1.5rem;
+}
+
+.index-pizza-add-btn-text {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0.1rem 0 0;
+    color: rgb(231 71 24);
+}
+
+.index-cart-add-icon {
+    height: 14px;
+    width: 14px;
+}
+
+/* index menu burger*/
+.index-menu-burger {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.index-menu-burger-text {
+    margin: 0 0 0 0;
+    font-weight: bold;
+    font-size: 25px;
+    color: black;
+}
+
+.index-menu-burger-row {
+    width: 100%;
+    row-gap: 1.5rem;
+    margin: 0.5rem 0 0 0;
+}
+
+.index-menu-burger-card {
+    background-color: transparent;
+    border: none;
+}
+
+.index-menu-burger-card-img-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-menu-burger-card-img {
+    height: 200px;
+    width: 200px;
+}
+
+.index-menu-burger-card-body {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgb(222, 222, 222);
+}
+
+.index-burger-card-title-wrapper {
+    width: 100%;
+    margin: 0 0 0.5rem 0;
+}
+
+.index-burger-card-title {
+    margin: 0 0 0 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(247, 145, 39);
+}
+
+.index-burger-type {
+    background-color: rgb(247, 145, 39, 0.6);
+    color: rgb(231 71 24);
+    margin: 0 0 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgb(206, 206, 206);
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.index-burger-card-text {
+    margin: 0 0 0.5rem 0;
+    font-size: 14px;
+    color: rgb(168, 168, 168);
+}
+
+.index-burger-card-details {
+    width: 100%;
+    /* margin: 0.5rem 0 0 0; */
+}
+
+.index-burger-card-price {}
+
+.index-burger-add-btn-wrapper {}
+
+.index-burger-add-cart-btn {
+    border: none;
+    background-color: rgb(247, 145, 39, 0.6);
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgb(206, 206, 206);
+    padding: 0.5rem;
+    height: 1.5rem;
+}
+
+.index-burger-add-btn-text {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0.1rem 0 0;
+    color: rgb(231 71 24);
 }
