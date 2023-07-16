@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style1.css">
+  </head>
+  <body>
+    
+    <div class="cart-main-div">
+        <%- include("../components/header.ejs") %>
+        <!-- <div class="empty-cart-div-wrapper d-flex align-items-center justify-content-center">
+            <div class="empty-cart-div d-flex flex-column justify-content-center">
+                <p class="empty-cart-text">Cart Empty <img class="cry-icon" src="/images/cry.svg"></p>
+                <p class="empty-cart-subtext">You probably haven't ordered a pizza yet.<br> To order a pizza, go to the main page.</p>
+                <img src="/images/empty-cart.svg" class="empty-cart-img" alt="empty">
+                <button onclick="goToHome()" class="empty-cart-back-btn d-flex flex-row align-items-center justify-content-center mx-auto">
+                    <p class="empty-cart-btn-text">Go Back</p>
+                    <img src="/images/back.svg" class="empty-cart-back-icon" alt="">
+                </button>
+            </div>
+        </div> -->
+        <div class="cart-wrapper d-flex flex-row">
+            <div class="cart-added-items">
+                <div class="cart-header-wrapper d-flex justify-content-between">
+                    <p class="cart-header-text">Your Cart</p>
+                    <p class="cart-items-count"><span>5</span> items</p>
+                </div>
+                <hr>
+                <div class="show-cart-items">
+                    <div class="row"></div>
+                </div>
+            </div>
+            <div class="order-summary-wrapper">
+                <div class="order-summary"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        window.onload = () => {
+            const navLinks = document.querySelectorAll(".nav-link");
+            for (let i = 0; i < navLinks.length; i++) {
+                if (navLinks[i].getAttribute("href") == "/") {
+                    navLinks[i].classList.add("active");
+                    break;
+                }
+            }
+        };
+
+        const goToHome = () => {
+            window.location.href = "/";
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>

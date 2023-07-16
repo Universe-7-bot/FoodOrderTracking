@@ -20,6 +20,10 @@ app.get("/get-menu", (req, res) => {
     res.render("menu");
 })
 
+app.get("/cart", (req, res) => {
+    res.render("customers/cart");
+})
+
 app.listen(PORT, (error) => {
     if (error) console.log(error);
     else console.log("Server is running on PORT: " + PORT);
