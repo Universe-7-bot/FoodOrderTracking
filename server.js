@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/get-menu", (req, res) => {
-    res.render("menu");
+    res.render("index");
 })
 
 app.get("/cart", (req, res) => {

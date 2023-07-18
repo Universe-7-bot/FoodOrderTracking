@@ -98,60 +98,6 @@
                             <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
                         </div>
                     </div>
-                    <div class="row show-cart-items-row">
-                        <div class="show-product-details d-flex flex-row">
-                            <img class="show-product-details-img" src="/images/pizza-menu1.png" alt="item">
-                            <div class="product-details-wrapper d-flex justify-content-center flex-column">
-                                <p class="item-name">Margarita</p>
-                                <p class="item-size">Medium</p>
-                            </div>
-                        </div>
-                        <div class="show-quantity">
-                            <p class="show-cart-items-text">1</p>
-                        </div>
-                        <div class="show-price">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                        <div class="show-total">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                    </div>
-                    <div class="row show-cart-items-row">
-                        <div class="show-product-details d-flex flex-row">
-                            <img class="show-product-details-img" src="/images/pizza-menu1.png" alt="item">
-                            <div class="product-details-wrapper d-flex justify-content-center flex-column">
-                                <p class="item-name">Margarita</p>
-                                <p class="item-size">Medium</p>
-                            </div>
-                        </div>
-                        <div class="show-quantity">
-                            <p class="show-cart-items-text">1</p>
-                        </div>
-                        <div class="show-price">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                        <div class="show-total">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                    </div>
-                    <div class="row show-cart-items-row">
-                        <div class="show-product-details d-flex flex-row">
-                            <img class="show-product-details-img" src="/images/pizza-menu1.png" alt="item">
-                            <div class="product-details-wrapper d-flex justify-content-center flex-column">
-                                <p class="item-name">Margarita</p>
-                                <p class="item-size">Medium</p>
-                            </div>
-                        </div>
-                        <div class="show-quantity">
-                            <p class="show-cart-items-text">1</p>
-                        </div>
-                        <div class="show-price">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                        <div class="show-total">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="order-summary-wrapper">
@@ -160,6 +106,25 @@
                         <p>Order Summary</p>
                     </div>
                     <hr>
+                    <div class="order-input-wrapper">
+                        <div class="address-input-wrapper">
+                            <p class="order-input-text">Address</p>
+                            <input type="text" class="order-summary-input" id="address-input" placeholder="Enter your address">
+                        </div>
+                        <div class="coupon-input-wrapper">
+                            <p class="order-input-text">Coupon Code</p>
+                            <input type="text" class="order-summary-input" id="coupon-input" placeholder="Enter your code" disabled>
+                            <button class="coupon-apply-btn">Apply</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="total-amount-wrapper">
+                        <p class="total-amount-text">Total Amount</p>
+                        <p class="total-amount-text"><img class="total-amount-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
+                    </div>
+                    <div class="place-order-btn-wrapper">
+                        <button class="place-order-btn">Place Order</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,7 +135,7 @@
         window.onload = () => {
             const navLinks = document.querySelectorAll(".nav-link");
             for (let i = 0; i < navLinks.length; i++) {
-                if (navLinks[i].getAttribute("href") == "/") {
+                if (navLinks[i].getAttribute("href") == "/cart") {
                     navLinks[i].classList.add("active");
                     break;
                 }
