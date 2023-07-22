@@ -2,8 +2,17 @@ const express = require("express");
 const app = express();
 const { auth } = require("express-openid-connect");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const { ObjectId } = require("mongodb");
 const dotenv = require("dotenv");
 dotenv.config();
+
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.DB_URL).then(() => {
+    console.log("Connected with database");
+}).catch((err) => {
+    console.log(err);
+})
 
 const config = {
     authRequired: false,
