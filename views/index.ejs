@@ -43,271 +43,71 @@
         <div class="index-menu-pizza">
           <p class="index-menu-pizza-text">Pizzas</p>
           <div class="row index-menu-pizza-row">
-            <div class="col-md-3">
-              <div class="card index-menu-pizza-card">
-                <div class="index-menu-pizza-card-img-wrapper">
-                  <img src="/images/pizza-menu1.png" class="index-menu-pizza-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-pizza-card-body card-body">
-                  <div class="index-pizza-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-pizza-card-title">Pepperoni Pizza</p>
-                    <p class="index-pizza-type">Medium</p>
+          <% menu.forEach((item)=> { %>
+            <% if (item.type=="pizza" ) { %>
+              <div class="col-md-3">
+                <div class="card index-menu-pizza-card">
+                  <div class="index-menu-pizza-card-img-wrapper">
+                    <img src="<%= item.image %>" class="index-menu-pizza-card-img card-img-top" alt="menu">
                   </div>
-                  <p class="index-pizza-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-pizza-card-details d-flex justify-content-between"> 
-                    <div class="index-pizza-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
+                  <div class="index-menu-pizza-card-body card-body">
+                    <div class="index-pizza-card-title-wrapper d-flex align-items-center justify-content-between">
+                      <p class="index-pizza-card-title"><%= item.name %></p>
+                      <p class="index-pizza-type"><%= item.size %></p>
                     </div>
-                    <div class="index-pizza-add-btn-wrapper">
-                      <button class="index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-pizza-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-pizza-card">
-                <div class="index-menu-pizza-card-img-wrapper">
-                  <img src="/images/pizza-menu2.png" class="index-menu-pizza-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-pizza-card-body card-body">
-                  <div class="index-pizza-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-pizza-card-title">Pepperoni Pizza</p>
-                    <p class="index-pizza-type">Medium</p>
-                  </div>
-                  <p class="index-pizza-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-pizza-card-details d-flex justify-content-between">
-                    <div class="index-pizza-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-pizza-add-btn-wrapper">
-                      <button class="index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-pizza-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
+                    <p class="index-pizza-card-text"><%= item.description %></p>
+                    <div class="index-pizza-card-details d-flex justify-content-between">
+                      <div class="index-pizza-card-price d-flex flex-row align-items-center">
+                        <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
+                        <p class="index-price-text"><%= item.price %></p>
+                      </div>
+                      <div class="index-pizza-add-btn-wrapper">
+                        <button class="index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
+                          <p class="index-pizza-add-btn-text">Add</p>
+                          <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-pizza-card">
-                <div class="index-menu-pizza-card-img-wrapper">
-                  <img src="/images/pizza-menu3.png" class="index-menu-pizza-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-pizza-card-body card-body">
-                  <div class="index-pizza-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-pizza-card-title">Pepperoni Pizza</p>
-                    <p class="index-pizza-type">Medium</p>
-                  </div>
-                  <p class="index-pizza-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-pizza-card-details d-flex justify-content-between">
-                    <div class="index-pizza-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-pizza-add-btn-wrapper">
-                      <button class="index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-pizza-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-pizza-card">
-                <div class="index-menu-pizza-card-img-wrapper">
-                  <img src="/images/pizza-menu4.png" class="index-menu-pizza-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-pizza-card-body card-body">
-                  <div class="index-pizza-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-pizza-card-title">Pepperoni Pizza</p>
-                    <p class="index-pizza-type">Medium</p>
-                  </div>
-                  <p class="index-pizza-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-pizza-card-details d-flex justify-content-between">
-                    <div class="index-pizza-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-pizza-add-btn-wrapper">
-                      <button class="index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-pizza-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-pizza-card">
-                <div class="index-menu-pizza-card-img-wrapper">
-                  <img src="/images/pizza-menu6.png" class="index-menu-pizza-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-pizza-card-body card-body">
-                  <div class="index-pizza-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-pizza-card-title">Pepperoni Pizza</p>
-                    <p class="index-pizza-type">Medium</p>
-                  </div>
-                  <p class="index-pizza-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-pizza-card-details d-flex justify-content-between">
-                    <div class="index-pizza-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-pizza-add-btn-wrapper">
-                      <button class="index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-pizza-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <% } %>
+          <% }); %>
           </div>
         </div>
         <div class="index-menu-burger">
           <p class="index-menu-burger-text">Burgers</p>
           <div class="row index-menu-burger-row">
-            <div class="col-md-3">
-              <div class="card index-menu-burger-card">
-                <div class="index-menu-burger-card-img-wrapper">
-                  <img src="/images/burger-menu1.png" class="index-menu-burger-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-burger-card-body card-body">
-                  <div class="index-burger-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-burger-card-title">Pepperoni Pizza</p>
-                    <p class="index-burger-type">Medium</p>
-                  </div>
-                  <p class="index-burger-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-burger-card-details d-flex justify-content-between">
-                    <div class="index-burger-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
+            <% menu.forEach((item) => { %>
+              <% if (item.type == "burger") { %>
+                <div class="col-md-3">
+                  <div class="card index-menu-burger-card">
+                    <div class="index-menu-burger-card-img-wrapper">
+                      <img src="<%= item.image %>" class="index-menu-burger-card-img card-img-top" alt="menu">
                     </div>
-                    <div class="index-burger-add-btn-wrapper">
-                      <button class="index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-burger-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-burger-card">
-                <div class="index-menu-burger-card-img-wrapper">
-                  <img src="/images/burger-menu1.png" class="index-menu-burger-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-burger-card-body card-body">
-                  <div class="index-burger-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-burger-card-title">Pepperoni Pizza</p>
-                    <p class="index-burger-type">Medium</p>
-                  </div>
-                  <p class="index-burger-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-burger-card-details d-flex justify-content-between">
-                    <div class="index-burger-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-burger-add-btn-wrapper">
-                      <button class="index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-burger-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
+                    <div class="index-menu-burger-card-body card-body">
+                      <div class="index-burger-card-title-wrapper d-flex align-items-center justify-content-between">
+                        <p class="index-burger-card-title"><%= item.name %></p>
+                        <p class="index-burger-type"><%= item.size %></p>
+                      </div>
+                      <p class="index-burger-card-text"><%= item.description %></p>
+                      <div class="index-burger-card-details d-flex justify-content-between">
+                        <div class="index-burger-card-price d-flex flex-row align-items-center">
+                          <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
+                          <p class="index-price-text"><%= item.price %></p>
+                        </div>
+                        <div class="index-burger-add-btn-wrapper">
+                          <button class="index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
+                            <p class="index-burger-add-btn-text">Add</p>
+                            <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-burger-card">
-                <div class="index-menu-burger-card-img-wrapper">
-                  <img src="/images/burger-menu2.png" class="index-menu-burger-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-burger-card-body card-body">
-                  <div class="index-burger-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-burger-card-title">Pepperoni Pizza</p>
-                    <p class="index-burger-type">Medium</p>
-                  </div>
-                  <p class="index-burger-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-burger-card-details d-flex justify-content-between">
-                    <div class="index-burger-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-burger-add-btn-wrapper">
-                      <button class="index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-burger-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-burger-card">
-                <div class="index-menu-burger-card-img-wrapper">
-                  <img src="/images/burger-menu3.png" class="index-menu-burger-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-burger-card-body card-body">
-                  <div class="index-burger-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-burger-card-title">Pepperoni Pizza</p>
-                    <p class="index-burger-type">Medium</p>
-                  </div>
-                  <p class="index-burger-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-burger-card-details d-flex justify-content-between">
-                    <div class="index-burger-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-burger-add-btn-wrapper">
-                      <button class="index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-burger-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card index-menu-burger-card">
-                <div class="index-menu-burger-card-img-wrapper">
-                  <img src="/images/burger-menu4.png" class="index-menu-burger-card-img card-img-top" alt="menu">
-                </div>
-                <div class="index-menu-burger-card-body card-body">
-                  <div class="index-burger-card-title-wrapper d-flex align-items-center justify-content-between">
-                    <p class="index-burger-card-title">Pepperoni Pizza</p>
-                    <p class="index-burger-type">Medium</p>
-                  </div>
-                  <p class="index-burger-card-text">Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese</p>
-                  <div class="index-burger-card-details d-flex justify-content-between">
-                    <div class="index-burger-card-price d-flex flex-row align-items-center">
-                      <img class="index-rupee-icon" src="/images/rupee.svg" alt="rupee">
-                      <p class="index-price-text">250</p>
-                    </div>
-                    <div class="index-burger-add-btn-wrapper">
-                      <button class="index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
-                        <p class="index-burger-add-btn-text">Add</p>
-                        <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <% } %>
+            <%  }); %>
           </div>
         </div>
       </div>

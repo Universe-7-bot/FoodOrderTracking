@@ -4,6 +4,7 @@ const { auth } = require("express-openid-connect");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { ObjectId } = require("mongodb");
+const menu = require("./models/menu.js");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -32,13 +33,16 @@ app.use(auth(config));
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
+app.get("/", async(req, res) => {
     // console.log(req.oidc.user);
-    res.render("index", { isAuthenticated: req.oidc.isAuthenticated() });
+    const allMenu = await menu.find({});
+    // console.log(allMenu);
+    res.render("index", { isAuthenticated: req.oidc.isAuthenticated(), menu: allMenu });
 })
 
-app.get("/get-menu", (req, res) => {
-    res.render("index", { isAuthenticated: req.oidc.isAuthenticated() });
+app.get("/get-menu", async (req, res) => {
+    const allMenu = await menu.find({});
+    res.render("index", { isAuthenticated: req.oidc.isAuthenticated(), menu: allMenu });
 })
 
 app.get("/cart", (req, res) => {

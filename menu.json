@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Pepperoni Pizza",
+    "type": "pizza",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/pizza-menu1.png",
+    "price": "250",
+    "size": "Small"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": "pizza",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/pizza-menu2.png",
+    "price": "500",
+    "size": "Medium"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": "pizza",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/pizza-menu3.png",
+    "price": "200",
+    "size": "Small"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": "pizza",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/pizza-menu4.png",
+    "price": "750",
+    "size": "Large"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": "burger",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/burger-menu1.png",
+    "price": "150",
+    "size": "Medium"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": "burger",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/burger-menu2.png",
+    "price": "150",
+    "size": "Medium"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": "burger",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/burger-menu3.png",
+    "price": "150",
+    "size": "Medium"
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": "burger",
+    "description": "Relish the delectable flavor of Chicken Pepperoni, topped with extra cheese",
+    "image": "/images/burger-menu4.png",
+    "price": "150",
+    "size": "Medium"
+  }
+]
