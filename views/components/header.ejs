@@ -16,7 +16,12 @@
                 </li>
                 <% if (isAuthenticated) { %>
                     <li class="nav-item">
-                        <a class="nav-link" href="/cart">Cart</a>
+                        <a class="nav-link" href="/cart">
+                            <div class="cart-qty-wrapper d-flex align-items-center justify-content-center">
+                                <p class="cart-qty"><%= session.cart ? session.cart.totalQty : 0 %></p>
+                            </div>
+                            <img class="cart-icon" src="images/cart.svg" alt="cart">
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>

@@ -62,7 +62,7 @@
                         <p class="index-price-text"><%= item.price %></p>
                       </div>
                       <div class="index-pizza-add-btn-wrapper">
-                        <button class="index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
+                        <button data-item="<%= JSON.stringify(item) %>" class="add-to-cart index-pizza-add-cart-btn d-flex flex-row align-items-center justify-content-center">
                           <p class="index-pizza-add-btn-text">Add</p>
                           <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
                         </button>
@@ -97,7 +97,7 @@
                           <p class="index-price-text"><%= item.price %></p>
                         </div>
                         <div class="index-burger-add-btn-wrapper">
-                          <button class="index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
+                          <button data-item="<%= JSON.stringify(item) %>" class="add-to-cart index-burger-add-cart-btn d-flex flex-row align-items-center justify-content-center">
                             <p class="index-burger-add-btn-text">Add</p>
                             <img class="index-cart-add-icon" src="/images/cart-add.svg" alt="cart">
                           </button>
@@ -114,6 +114,7 @@
     </div>
 
     <script>
+      // import axios from "axios";
       window.onload = () => {
         const navLinks = document.querySelectorAll(".nav-link");
         for (let i = 0; i < navLinks.length; i++) {
@@ -123,6 +124,33 @@
           }
         }
       };
+
+      const updateCart = (item) => {
+        // axios.post("/update-cart", item).then((res) => {
+        //   console.log(res);
+        // })
+        fetch("http://localhost:3000/update-cart", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(item)
+        }).then((res) => {
+          return res.json();
+        }).then((f_res) => {
+          console.log(f_res.totalQty);
+        })
+      };
+      
+      const addToCartBtn = document.querySelectorAll(".add-to-cart");
+      addToCartBtn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const item = JSON.parse(btn.getAttribute("data-item"));
+          // console.log(item);
+          updateCart(item);
+        })
+      })
+
     </script>
     <script src="/js/script1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
