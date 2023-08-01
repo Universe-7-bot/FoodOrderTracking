@@ -21,7 +21,9 @@
     "express-flash": "^0.0.2",
     "express-openid-connect": "^2.16.0",
     "express-session": "^1.17.3",
+    "moment": "^2.29.4",
     "mongodb": "^5.7.0",
-    "mongoose": "^7.4.0"
+    "mongoose": "^7.4.0",
+    "stripe": "^12.16.0"
   }
 }

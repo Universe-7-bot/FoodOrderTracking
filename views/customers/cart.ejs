@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Your Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style1.css">
   </head>
   <body>
     
     <div class="cart-main-div">
         <%- include("../components/header.ejs") %>
-        <!-- <div class="empty-cart-div-wrapper d-flex align-items-center justify-content-center">
+        <% if (!session.cart) { %>
+        <div class="empty-cart-div-wrapper d-flex align-items-center justify-content-center">
             <div class="empty-cart-div d-flex flex-column justify-content-center">
                 <p class="empty-cart-text">Cart Empty <img class="cry-icon" src="/images/cry.svg"></p>
                 <p class="empty-cart-subtext">You probably haven't ordered a pizza yet.<br> To order a pizza, go to the main page.</p>
@@ -21,12 +23,13 @@
                     <img src="/images/back.svg" class="empty-cart-back-icon" alt="">
                 </button>
             </div>
-        </div> -->
+        </div>
+        <% } else { %>
         <div class="cart-wrapper d-flex flex-row">
             <div class="cart-added-items">
                 <div class="cart-header-wrapper d-flex justify-content-between">
                     <p class="cart-header-text">Your Cart</p>
-                    <p class="cart-items-count"><span>5</span> items</p>
+                    <p class="cart-items-count"><span><%= session.cart.totalQty %></span> items</p>
                 </div>
                 <hr>
                 <div class="show-cart-header d-flex flex-row">
@@ -44,60 +47,27 @@
                     </div>
                 </div>
                 <div class="show-cart-items">
+                    <% const items = Object.values(session.cart.items); %>
+                    <% for (let i = 0; i < items.length; i++) { %>
                     <div class="row show-cart-items-row">
                         <div class="show-product-details d-flex flex-row">
-                            <img class="show-product-details-img" src="/images/pizza-menu1.png" alt="item">
+                            <img class="show-product-details-img" src="<%= items[i].item.image %>" alt="item">
                             <div class="product-details-wrapper d-flex justify-content-center flex-column">
-                                <p class="item-name">Margarita</p>
-                                <p class="item-size">Medium</p>
+                                <p class="item-name"><%= items[i].item.name %></p>
+                                <p class="item-size"><%= items[i].item.size %></p>
                             </div>
                         </div>
                         <div class="show-quantity">
-                            <p class="show-cart-items-text">1</p>
+                            <p class="show-cart-items-text"><%= items[i].qty %></p>
                         </div>
                         <div class="show-price">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
+                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span><%= items[i].item.price %></span></p>
                         </div>
                         <div class="show-total">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
+                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span><%= items[i].item.price * items[i].qty %></span></p>
                         </div>
                     </div>
-                    <div class="row show-cart-items-row">
-                        <div class="show-product-details d-flex flex-row">
-                            <img class="show-product-details-img" src="/images/pizza-menu1.png" alt="item">
-                            <div class="product-details-wrapper d-flex justify-content-center flex-column">
-                                <p class="item-name">Margarita</p>
-                                <p class="item-size">Medium</p>
-                            </div>
-                        </div>
-                        <div class="show-quantity">
-                            <p class="show-cart-items-text">1</p>
-                        </div>
-                        <div class="show-price">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                        <div class="show-total">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                    </div>
-                    <div class="row show-cart-items-row">
-                        <div class="show-product-details d-flex flex-row">
-                            <img class="show-product-details-img" src="/images/pizza-menu1.png" alt="item">
-                            <div class="product-details-wrapper d-flex justify-content-center flex-column">
-                                <p class="item-name">Margarita</p>
-                                <p class="item-size">Medium</p>
-                            </div>
-                        </div>
-                        <div class="show-quantity">
-                            <p class="show-cart-items-text">1</p>
-                        </div>
-                        <div class="show-price">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                        <div class="show-total">
-                            <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
             </div>
             <div class="order-summary-wrapper">
@@ -111,6 +81,10 @@
                             <p class="order-input-text">Address</p>
                             <input type="text" class="order-summary-input" id="address-input" placeholder="Enter your address">
                         </div>
+                        <div class="contact-input-wrapper">
+                            <p class="order-input-text">Contact</p>
+                            <input type="text" class="order-summary-input" id="contact-input" placeholder="Enter your contact no">
+                        </div>
                         <div class="coupon-input-wrapper">
                             <p class="order-input-text">Coupon Code</p>
                             <input type="text" class="order-summary-input" id="coupon-input" placeholder="Enter your code" disabled>
@@ -120,16 +94,31 @@
                     <hr>
                     <div class="total-amount-wrapper">
                         <p class="total-amount-text">Total Amount</p>
-                        <p class="total-amount-text"><img class="total-amount-rupee-icon" src="/images/rupee.svg"><span>250</span></p>
+                        <p class="total-amount-text"><img class="total-amount-rupee-icon" src="/images/rupee.svg"><span><%= session.cart.totalPrice %></span></p>
                     </div>
-                    <div class="place-order-btn-wrapper">
-                        <button class="place-order-btn">Place Order</button>
+                    <div class="payment-type-wrapper">
+                        <p class="payment-type-text">Payment Type</p>
+                        <select id="paymentMode" class="form-select payment-type-select" onchange="paymentMode()">
+                            <option value="select" selected>Select</option>
+                            <option value="cod">Cash on delivery</option>
+                            <option value="card">Card</option>
+                        </select>
                     </div>
+                    <% if (isAuthenticated) { %>
+                        <input id="customer-email" type="hidden" value="<%= customer.email %>">
+                        <div id="payment-btn" class="place-order-btn-wrapper">
+                           <button data-email="<%= customer.email %>" class="place-order-btn" onclick="placeOrder(this)">Place Order</button>
+                        </div>
+                    <% } else { %>
+                        <div class="place-order-btn-wrapper">
+                            <button class="place-order-btn" onclick="goToLogin()">Login to Order</button>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         </div>
+        <% } %>
     </div>
-
 
     <script>
         window.onload = () => {
@@ -144,8 +133,154 @@
 
         const goToHome = () => {
             window.location.href = "/";
+        };
+
+        const goToLogin = () => {
+            window.location.href = "/login";
+        };
+
+        function isValidMobileNumber(number) {
+            if (!/^\d+$/.test(number)) {
+                return false;
+            }
+            const cleanNumber = number.replace(/\D/g, '');
+
+            if (cleanNumber.length !== 10) {
+                return false;
+            }
+
+            const validPrefixes = ['6', '7', '8', '9'];
+            const firstDigit = cleanNumber.charAt(0);
+            if (!validPrefixes.includes(firstDigit)) {
+                return false;
+            }
+
+            return true;
         }
+
+        const placeOrder = (btn) => {
+            const address = document.getElementById("address-input").value;
+            const contact = document.getElementById("contact-input").value;
+            const email = btn.getAttribute("data-email");
+            const paymentType = document.getElementById("paymentMode");
+            // console.log(email, address, contact);
+            if (!isValidMobileNumber(contact)) {
+                Toastify({
+                    text: "Enter a valid mobile number",
+                    duration: 2000,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    avatar: "/images/error-icon.svg",
+                    style: {
+                        background: "#000000",
+                    },
+                    onClick: function () { } // Callback after click
+                }).showToast();
+                return;
+            }
+
+            if (paymentType.value == "select") {
+                Toastify({
+                    text: "Select a payment mode",
+                    duration: 2000,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    avatar: "/images/error-icon.svg",
+                    style: {
+                        background: "#000000",
+                    },
+                    onClick: function () { } // Callback after click
+                }).showToast();
+                return;
+            }
+
+            fetch("http://localhost:3000/place-order", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, address, contact })
+            }).then((res) => {
+                return res.json();
+            }).then((f_res) => {
+                if (f_res.code == 500) {
+                    Toastify({
+                        text: f_res.msg,
+                        duration: 2000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        stopOnFocus: true,
+                        avatar: "/images/success-icon.svg",
+                        style: {
+                            background: "#000000",
+                        },
+                        onClick: function () { } // Callback after click
+                    }).showToast();
+                    setTimeout(() => {
+                        window.location.href = "/orders";
+                    }, 1500)
+                }
+                else if (f_res.code == 300 || f_res.code == 404) {
+                    Toastify({
+                        text: f_res.msg,
+                        duration: 2000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        stopOnFocus: true,
+                        avatar: "/images/error-icon.svg",
+                        style: {
+                            background: "#000000",
+                        },
+                        onClick: function () { } // Callback after click
+                    }).showToast();
+                }
+            })
+        };
+
+        //stripe handle checkout
+        const handleCheckout = (btn) => {
+            fetch("http://localhost:3000/create-checkout-session", {
+                method: "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                }, 
+            }).then((res) => {
+                return res.json();
+            }).then((f_res) => {
+                // console.log(f_res);
+                if (f_res.url) {
+                    window.location.href = f_res.url;
+                }
+            })
+        }
+        
+        //payment mode switch
+        const paymentMode = () => {
+            const paymentType = document.getElementById("paymentMode");
+            // console.log(paymentType.value);
+            const email = document.getElementById("customer-email").value;
+            let paymentBtn = document.getElementById("payment-btn");
+            if (paymentType.value == "cod") {
+                paymentBtn.innerHTML = `<button data-email="${email}" class="place-order-btn" onclick="placeOrder(this)">Place Order</button>`;
+            }
+            else if (paymentType.value == "card") {
+                paymentBtn.innerHTML = "";
+                paymentBtn.innerHTML = `<button data-email="${email}" class="place-order-btn" onclick="handleCheckout(this)">Checkout</button>`;
+            }
+        };
+
     </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
