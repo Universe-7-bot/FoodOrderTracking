@@ -175,6 +175,44 @@ app.get("/admin-orders", async (req, res) => {
     }
 })
 
+app.post("/update-order-status", (req, res) => {
+    try {
+        const { orderId, orderStatus } = req.body;
+        // console.log(orderId, orderStatus);
+        order.updateOne({
+            _id: new ObjectId(orderId)
+        }, {
+            $set: {
+                status: orderStatus
+            }
+        }).then(() => {
+
+        })
+        return res.json({ msg: "order status updated" });
+    } catch(error) {
+        if (error) console.log(error);
+    }
+})
+
+app.get("/track-order/:id", async (req, res) => {
+    try {
+        const User = await user.findOne({
+            email: req.oidc.user.email
+        })
+        const Order = await order.findOne({
+            _id: new ObjectId(req.params.id)
+        })
+        if (User._id.toString() == Order.customer._id.toString()) { //order placed by authenticated customer
+            res.render("customers/singleOrder", { isAuthenticated: req.oidc.isAuthenticated(), order: Order, session: req.session });
+        }
+        else {
+            res.redirect("/");
+        }
+    } catch (error) {
+        if (error) console.log(error);
+    }
+})
+
 app.get("/checkout-success", (req, res) => {
     res.render("checkoutSuccess", { isAuthenticated: req.oidc.isAuthenticated(), session: req.session });
 })
@@ -207,7 +245,7 @@ app.post('/create-checkout-session', async (req, res) => {
         cancel_url: 'http://localhost:3000',
     });
 
-    return res.json({ url: session.url});
+    res.json({ url: session.url });
 });
 
 

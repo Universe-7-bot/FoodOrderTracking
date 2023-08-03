@@ -258,9 +258,7 @@
                 return res.json();
             }).then((f_res) => {
                 // console.log(f_res);
-                if (f_res.url) {
-                    window.location.href = f_res.url;
-                }
+                window.location.href = `${f_res.url}`;
             })
         }
         

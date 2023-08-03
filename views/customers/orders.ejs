@@ -40,7 +40,7 @@
                             <% allOrders.forEach((order) => { %>
                                 <tr>
                                     <td>
-                                        <a class="order-id-a" href=""><%= order._id %></a>
+                                        <a class="order-id-a" href="/track-order/<%= order._id %>"><%= order._id %></a>
                                     </td>
                                     <td><%= order.phone %></td>
                                     <td><%= order.address %></td>

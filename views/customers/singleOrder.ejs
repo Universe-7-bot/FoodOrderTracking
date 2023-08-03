@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Track Order</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style1.css">
+</head>
+
+<body>
+    <div class="single-order-main-div">
+        <%- include("../components/header.ejs") %>
+        <div class="single-order-wrapper">
+            <div class="single-order-details-container">
+                <div class="order-details-text">
+                    <p>Order Details</p>
+                    <p><%= order._id %></p>
+                </div>
+                <div class="order-details-header d-flex flex-row">
+                    <div class="order-details-product-details">
+                        <p class="show-cart-header-text" style="padding-left: 1rem;">Product details</p>
+                    </div>
+                    <div class="order-details-quantity">
+                        <p class="show-cart-header-text text-center">Quantity</p>
+                    </div>
+                    <div class="order-details-price">
+                        <p class="show-cart-header-text text-center">Price</p>
+                    </div>
+                    <div class="order-details-total">
+                        <p class="show-cart-header-text text-center">Total</p>
+                    </div>
+                </div>
+                <div class="order-details-items">
+                    <% const items=Object.values(order.items); %>
+                    <% let totalPrice = 0 ; %>
+                        <% for (let i=0; i < items.length; i++) { %>
+                            <div class="row order-details-items-row">
+                                <div class="show-order-product-details d-flex flex-row">
+                                    <img class="show-order-product-details-img" src="<%= items[i].item.image %>" alt="item">
+                                    <div class="order-product-details-wrapper d-flex justify-content-center flex-column">
+                                        <p class="order-item-name">
+                                            <%= items[i].item.name %>
+                                        </p>
+                                        <p class="order-item-size">
+                                            <%= items[i].item.size %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="show-order-quantity">
+                                    <p class="show-order-cart-items-text">
+                                        <%= items[i].qty %>
+                                        <% totalPrice += items[i].item.price * items[i].qty %>
+                                    </p>
+                                </div>
+                                <div class="show-order-price">
+                                    <p class="show-order-cart-items-text"><img class="show-order-cart-rupee-icon" src="/images/rupee.svg"><span>
+                                            <%= items[i].item.price %>
+                                        </span></p>
+                                </div>
+                                <div class="show-order-total">
+                                    <p class="show-order-cart-items-text"><img class="show-order-cart-rupee-icon" src="/images/rupee.svg"><span>
+                                            <%= items[i].item.price * items[i].qty %>
+                                        </span></p>
+                                </div>
+                            </div>
+                            <% } %>
+                </div>
+                <div class="order-details-footer d-flex flex-row">
+                    <div class="order-details-total-price">
+                        <p>Total Order Price</p>
+                        <p><img class="total-amount-rupee-icon" src="/images/rupee.svg" style="margin: 0 0 0.1rem 0;">
+                            <span>
+                                <%= totalPrice %>
+                            </span></p>
+                    </div>
+                    <div class="order-details-payment-type">
+                        <p>Payment Mode</p>
+                        <p>
+                            <%= order.paymentType %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="order-input" value="<%= JSON.stringify(order) %>">
+            <div class="single-order-status-container">
+                <p class="track-delivery-text">Track delivery status</p>
+                <div class="order-status-wrapper">
+                    <div class="order-status">
+                        <div class="dot-line-wrapper">
+                            <span class="dot">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </span>
+                            <span class="line mx-auto"></span>
+                        </div>
+                        <div class="order-status-details">
+                            <p>Order Placed</p>
+                            <p>11:12 PM</p>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <div class="dot-line-wrapper">
+                            <span class="dot">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                            <span class="line mx-auto"></span>
+                        </div>
+                        <div class="order-status-details">
+                            <p>Order Confirmation</p>
+                            <p>11:12 PM</p>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <div class="dot-line-wrapper">
+                            <span class="dot">
+                                <i class="fa-solid fa-pizza-slice"></i>
+                            </span>
+                            <span class="line mx-auto"></span>
+                        </div>
+                        <div class="order-status-details">
+                            <p>Preparing</p>
+                            <p>11:12 PM</p>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <div class="dot-line-wrapper">
+                            <span class="dot">
+                                <i class="fa-solid fa-truck"></i>
+                            </span>
+                            <span class="line mx-auto"></span>
+                        </div>
+                        <div class="order-status-details">
+                            <p>Out for delivery</p>
+                            <p>11:12 PM</p>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <div class="dot-line-wrapper">
+                            <span class="dot">
+                                <i class="fa-solid fa-face-smile"></i>
+                            </span>
+                            <span class="line mx-auto" style="display: none;"></span>
+                        </div>
+                        <div class="order-status-details">
+                            <p>Completed</p>
+                            <p>11:12 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // window.onload = () => {
+        //     const navLinks = document.querySelectorAll(".nav-link");
+        //     for (let i = 0; i < navLinks.length; i++) {
+        //         if (navLinks[i].getAttribute("href") == "/orders") {
+        //             navLinks[i].classList.add("active");
+        //             break;
+        //         }
+        //     }
+        // };  
+        
+        const orderInput = document.getElementById("order-input").value;
+        let order = JSON.parse(orderInput);
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

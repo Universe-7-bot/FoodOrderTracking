@@ -1,4 +1,5 @@
 <!-- navbar start -->
+<% baseUrl = "http://localhost:3000/"; %>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid col-md-10">
         <a class="navbar-brand" href="/">Food Order</a>
@@ -20,7 +21,7 @@
                             <div class="cart-qty-wrapper d-flex align-items-center justify-content-center">
                                 <p id="cart-qty-counter" class="cart-qty"><%= session.cart ? session.cart.totalQty : 0 %></p>
                             </div>
-                            <img class="cart-icon" src="images/cart.svg" alt="cart">
+                            <img class="cart-icon" src="<%= baseUrl + "images/cart.svg" %>" alt="cart">
                         </a>
                     </li>
                     <li class="nav-item">
