@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style1.css">
+    <script type="text/javascript" src="https://MomentJS.com/downloads/moment.js"></script>
 </head>
 
 <body>
@@ -98,8 +99,8 @@
                             <span class="line mx-auto"></span>
                         </div>
                         <div class="order-status-details">
-                            <p>Order Placed</p>
-                            <p>11:12 PM</p>
+                            <p data-status="order_placed">Order Placed</p>
+                            <p><%= moment(order.createdAt).format("MMMM Do YYYY, hh:mm A"); %></p>
                         </div>
                     </div>
                     <div class="order-status">
@@ -110,8 +111,8 @@
                             <span class="line mx-auto"></span>
                         </div>
                         <div class="order-status-details">
-                            <p>Order Confirmation</p>
-                            <p>11:12 PM</p>
+                            <p data-status="confirmed">Order Confirmation</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class="order-status">
@@ -122,8 +123,8 @@
                             <span class="line mx-auto"></span>
                         </div>
                         <div class="order-status-details">
-                            <p>Preparing</p>
-                            <p>11:12 PM</p>
+                            <p data-status="prepared">Preparing</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class="order-status">
@@ -134,8 +135,8 @@
                             <span class="line mx-auto"></span>
                         </div>
                         <div class="order-status-details">
-                            <p>Out for delivery</p>
-                            <p>11:12 PM</p>
+                            <p data-status="delivered">Out for delivery</p>
+                            <p></p>
                         </div>
                     </div>
                     <div class="order-status">
@@ -146,8 +147,8 @@
                             <span class="line mx-auto" style="display: none;"></span>
                         </div>
                         <div class="order-status-details">
-                            <p>Completed</p>
-                            <p>11:12 PM</p>
+                            <p data-status="completed">Completed</p>
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -168,6 +169,27 @@
         
         const orderInput = document.getElementById("order-input").value;
         let order = JSON.parse(orderInput);
+        let allStatus = document.querySelectorAll(".order-status");
+        let completed = true;
+        allStatus.forEach((status) => {
+            // console.log(status);
+            let dlWrapper = status.querySelector(".dot-line-wrapper");
+            let osDetails = status.querySelector(".order-status-details");
+            let firstChild = osDetails.querySelector("p:first-child");
+            let time = osDetails.querySelector("p:last-child");
+            let orderStatus = firstChild.getAttribute("data-status");
+            if (completed) {
+                dlWrapper.classList.add("current-dot");
+                osDetails.classList.add("current");
+            }
+            if (order.status == orderStatus) {
+                completed = false;
+                dlWrapper.classList.add("current-dot");
+                osDetails.classList.add("current");
+                time.innerHTML = moment(order.updatedAt).format("MMMM Do YYYY, hh:mm A");
+            }
+        });
+
     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

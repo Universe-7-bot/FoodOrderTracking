@@ -203,7 +203,7 @@ app.get("/track-order/:id", async (req, res) => {
             _id: new ObjectId(req.params.id)
         })
         if (User._id.toString() == Order.customer._id.toString()) { //order placed by authenticated customer
-            res.render("customers/singleOrder", { isAuthenticated: req.oidc.isAuthenticated(), order: Order, session: req.session });
+            res.render("customers/singleOrder", { isAuthenticated: req.oidc.isAuthenticated(), order: Order, session: req.session, moment: moment });
         }
         else {
             res.redirect("/");

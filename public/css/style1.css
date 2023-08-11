@@ -1151,7 +1151,7 @@
 }
 
 .order-details-items::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
     background-color: rgba(202, 202, 202, 0.2);
 }
 
