@@ -249,6 +249,47 @@
 
         //stripe handle checkout
         const handleCheckout = (btn) => {
+            const address = document.getElementById("address-input").value;
+            const contact = document.getElementById("contact-input").value;
+            // const email = btn.getAttribute("data-email");
+            const paymentType = document.getElementById("paymentMode");
+            // console.log(email, address, contact);
+            if (!isValidMobileNumber(contact)) {
+                Toastify({
+                    text: "Enter a valid mobile number",
+                    duration: 2000,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    avatar: "/images/error-icon.svg",
+                    style: {
+                        background: "#000000",
+                    },
+                    onClick: function () { } // Callback after click
+                }).showToast();
+                return;
+            }
+
+            if (paymentType.value == "select") {
+                Toastify({
+                    text: "Select a payment mode",
+                    duration: 2000,
+                    newWindow: true,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    avatar: "/images/error-icon.svg",
+                    style: {
+                        background: "#000000",
+                    },
+                    onClick: function () { } // Callback after click
+                }).showToast();
+                return;
+            }
+
             fetch("http://localhost:3000/create-checkout-session", {
                 method: "POST",
                 headers: {

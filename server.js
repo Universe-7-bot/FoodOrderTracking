@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const { auth } = require("express-openid-connect");
 const bodyParser = require("body-parser");
 const Emitter = require("events");
+const nodemailer = require("nodemailer");
 const mongoose = require("mongoose");
 const { ObjectId } = require("mongodb");
 const menu = require("./models/menu.js");
@@ -80,7 +81,7 @@ app.get("/", async (req, res) => {
             })
             await newUser.save();
         }
-        res.render("index", { isAuthenticated: req.oidc.isAuthenticated(), menu: allMenu, session: req.session });
+        res.render("index", { isAuthenticated: req.oidc.isAuthenticated(), menu: allMenu, session: req.session, user: req.oidc.user });
     }
 })
 
@@ -90,7 +91,7 @@ app.get("/get-menu", async (req, res) => {
 })
 
 app.get("/cart", (req, res) => {
-    res.render("customers/cart", { isAuthenticated: req.oidc.isAuthenticated(), customer: req.oidc.user, session: req.session });
+    res.render("customers/cart", { isAuthenticated: req.oidc.isAuthenticated(), customer: req.oidc.user, session: req.session, user: req.oidc.user });
 })
 
 app.post("/update-cart", (req, res) => {
@@ -127,6 +128,35 @@ app.post("/place-order", async (req, res) => {
         if (address.trim() == "" || contact.trim() == "") {
             return res.json({ msg: "Enter all the fields", code: 300 });
         }
+
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.APP_PASSWORD
+            },
+        });
+
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: email,
+            subject: 'New order placed!',
+            html: `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>My HTML Page</title>
+                </head>
+                <body>
+                    <h4>Hello from Slice & Bite!</h4>
+                    <p>You have successfully placed an order</p>
+                    <h4>Thanking you</h4>
+                </body>
+                </html>
+            `,
+        };
+
+
         const customer = await user.findOne({ email: email });
         if (customer) {
             // console.log(customer);
@@ -138,6 +168,15 @@ app.post("/place-order", async (req, res) => {
             });
             newOrder.save().then(() => {
             });
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    // console.log(info.response);
+                }
+            });
+
             delete req.session.cart;
             return res.json({ msg: "Order placed successfully", code: 500 });
         }
@@ -156,7 +195,7 @@ app.get("/orders", async (req, res) => {
                    "customer._id": existingCustomer._id
             })
             // console.log(allOrders);
-            res.render("customers/orders", {isAuthenticated: req.oidc.isAuthenticated(), session: req.session, orders: allOrders, moment: moment})
+            res.render("customers/orders", { isAuthenticated: req.oidc.isAuthenticated(), session: req.session, orders: allOrders, moment: moment, user: req.oidc.user })
         }
     } catch (error) {
         if (error) console.log(error);
@@ -173,7 +212,7 @@ app.get("/admin-orders", async (req, res) => {
                 }
             })
             // console.log(allOrders);
-            res.render("admin/orders", { isAuthenticated: req.oidc.isAuthenticated(), session: req.session, orders: allOrders, moment: moment })
+            res.render("admin/orders", { isAuthenticated: req.oidc.isAuthenticated(), session: req.session, orders: allOrders, moment: moment, user: req.oidc.user })
         }
     } catch (error) {
         if (error) console.log(error);
@@ -213,7 +252,7 @@ app.get("/track-order/:id", async (req, res) => {
             _id: new ObjectId(req.params.id)
         })
         if (User._id.toString() == Order.customer._id.toString()) { //order placed by authenticated customer
-            res.render("customers/singleOrder", { isAuthenticated: req.oidc.isAuthenticated(), order: Order, session: req.session, moment: moment });
+            res.render("customers/singleOrder", { isAuthenticated: req.oidc.isAuthenticated(), order: Order, session: req.session, moment: moment, user: req.oidc.user });
         }
         else {
             res.redirect("/");
@@ -224,7 +263,7 @@ app.get("/track-order/:id", async (req, res) => {
 })
 
 app.get("/checkout-success", (req, res) => {
-    res.render("checkoutSuccess", { isAuthenticated: req.oidc.isAuthenticated(), session: req.session });
+    res.render("checkoutSuccess", { isAuthenticated: req.oidc.isAuthenticated(), session: req.session, user: req.oidc.user });
 })
 
 app.post('/create-checkout-session', async (req, res) => {

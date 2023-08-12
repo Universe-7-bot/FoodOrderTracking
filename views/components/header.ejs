@@ -2,7 +2,10 @@
 <% baseUrl = "http://localhost:3000/"; %>
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid col-md-10">
-        <a class="navbar-brand" href="/">Food Order</a>
+        <a class="navbar-brand d-flex flex-row" href="/">
+            <img class="navbar-logo" src="/images/logo.svg" alt="logo">
+            <p class="navbar-logo-text">Slice & Bite</p>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -15,25 +18,40 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/get-menu#index-menu">Menu</a>
                 </li>
-                <% if (isAuthenticated) { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cart">
-                            <div class="cart-qty-wrapper d-flex align-items-center justify-content-center">
-                                <p id="cart-qty-counter" class="cart-qty"><%= session.cart ? session.cart.totalQty : 0 %></p>
-                            </div>
-                            <img class="cart-icon" src="<%= baseUrl + "images/cart.svg" %>" alt="cart">
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                <% } else { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">
+                        <div class="cart-qty-wrapper d-flex align-items-center justify-content-center">
+                            <p id="cart-qty-counter" class="cart-qty"><%= session.cart ? session.cart.totalQty : 0 %></p>
+                        </div>
+                        <img class="cart-icon" src="<%= baseUrl + "images/cart.svg" %>" alt="cart">
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li> -->
+                <% if (!isAuthenticated) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <img class="nav-login-img" src="/images/login.svg" alt="login">
+                    </a>
+                </li>
                 <% } %>
             </ul>
         </div>
+        <% if (isAuthenticated) { %>
+            <div>
+                <div class="dropdown header-dropdown">
+                    <button class="btn header-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="<%= user.picture %>" alt="user">
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/orders">Your Orders</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <% } %>
     </div>
 </nav>
 <!-- navbar end -->

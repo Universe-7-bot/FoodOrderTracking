@@ -45,6 +45,21 @@
     color: rgb(225, 71, 30) !important;
 }
 
+.navbar-logo {
+    height: 50px;
+    width: 50px;
+}
+
+.navbar-logo-text {
+    margin: 0 0 0 0.3rem;
+    font-size: 20px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(225, 71, 30);
+}
+
 .cart-icon {
     height: 22px;
     width: 22px;
@@ -53,7 +68,7 @@
 .cart-qty-wrapper {
     position: absolute;
     top: 6.9px;
-    left: 84.3%;
+    left: 85.8%;
     height: 16px;
     width: 16px;
     background-color: white;
@@ -67,6 +82,24 @@
     font-size: 11px;
     font-weight: 600;
     color: rgb(225, 71, 30);
+}
+
+.header-dropdown-btn {
+    border: none;
+}
+
+.header-dropdown-btn img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    /* border: 1px dashed rgb(225, 71, 30); */
+    /* padding: 2px; */
+    box-shadow: 0 0 20px rgb(237, 127, 96);
+}
+
+.nav-login-img {
+    height: 25px;
+    width: 25px;
 }
 
 /* ------------ index-page ----------- */
