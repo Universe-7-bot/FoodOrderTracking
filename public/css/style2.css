@@ -1,0 +1,39 @@
+.main-div-404 {
+    height: 100vh;
+    width: 100%;
+}
+
+.wrapper-404 p {
+    font-size: 30px;
+    font-weight: bolder;
+    margin: 0 0 0 0;
+    text-align: center;
+    /* color: white;
+    background-color: rgb(51, 98, 204);
+    border-radius: 50%; */
+}
+
+.wrapper-404 img {
+    height: 400px;
+    width: 400px;
+}
+
+.wrapper-404 button {
+    border: none;
+    height: 2.5rem;
+    width: 8rem;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(64, 123, 255);
+    /* border: 2px solid rgb(54, 103, 213); */
+    color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 20px rgb(211, 211, 211);    
+}
+
+.wrapper-404 button:hover {
+    background-color: rgb(54, 103, 213);
+}

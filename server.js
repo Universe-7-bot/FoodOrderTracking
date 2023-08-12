@@ -7,6 +7,7 @@ const MongoStore = require("connect-mongo");
 const cookieParser = require("cookie-parser");
 const { auth } = require("express-openid-connect");
 const bodyParser = require("body-parser");
+const Emitter = require("events");
 const mongoose = require("mongoose");
 const { ObjectId } = require("mongodb");
 const menu = require("./models/menu.js");
@@ -33,6 +34,10 @@ const config = {
     clientID: process.env.CLIENT_ID,
     issuerBaseURL: process.env.ISSUER
 };
+
+// event emitter
+const eventEmitter = new Emitter(); //creating an instance
+app.set("eventEmitter", eventEmitter); //can emit an event anywhere in the server.js
 
 app.use(session({ //session middleware
     secret: process.env.SESSION_SECRET,
@@ -188,6 +193,11 @@ app.post("/update-order-status", (req, res) => {
         }).then(() => {
 
         })
+
+        //emit event 
+        const eventEmitter = req.app.get("eventEmitter");
+        eventEmitter.emit("orderUpdated", { id: orderId, status: orderStatus });
+
         return res.json({ msg: "order status updated" });
     } catch(error) {
         if (error) console.log(error);
@@ -248,8 +258,31 @@ app.post('/create-checkout-session', async (req, res) => {
     res.json({ url: session.url });
 });
 
+//catch-all route - unmatched route (404 error)
+app.get("*", (req, res) => {
+    res.status(404).render("404");
+})
 
-app.listen(PORT, (error) => {
+//handling 404 error - middleware
+// app.use((req, res, next) => {
+//     res.status(404).render("404");
+// })
+
+const server = app.listen(PORT, (error) => {
     if (error) console.log(error);
     else console.log("Server is running on PORT: " + PORT);
+})
+
+// socket.io
+const io = require("socket.io")(server);
+io.on("connection", (socket) => {
+    // console.log(socket.id);
+    socket.on("join", (orderId) => { //receiving the event
+        // console.log(orderId);
+        socket.join(orderId); //creating unique room for a particular order
+    })
+})
+
+eventEmitter.on("orderUpdated", (data) => {
+    io.to(`order-${data.id}`).emit("updated", data); //emit to the particular room
 })
