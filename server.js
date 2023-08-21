@@ -121,6 +121,22 @@ app.post("/update-cart", (req, res) => {
     return res.json({ totalQty: req.session.cart.totalQty });
 })
 
+app.post("/remove-item", (req, res) => {
+    try {
+        const { itemId } = req.body;
+        const cart = req.session.cart;
+        if (cart.items[itemId]) {
+            cart.totalQty -= cart.items[itemId].qty;
+            cart.totalPrice -= (cart.items[itemId].qty * cart.items[itemId].item.price);
+            delete cart.items[itemId];
+            return res.json({ msg: "Item removed from cart", code: 500 });
+        }
+        return res.json({ msg: "Something went wrong", code: 300 });
+    } catch (error) {
+        if (error) console.log(error);
+    }
+})
+
 app.post("/place-order", async (req, res) => {
     try {
         const { email, address, contact } = req.body;
@@ -155,7 +171,6 @@ app.post("/place-order", async (req, res) => {
                 </html>
             `,
         };
-
 
         const customer = await user.findOne({ email: email });
         if (customer) {

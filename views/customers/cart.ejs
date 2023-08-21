@@ -45,6 +45,7 @@
                     <div class="header-total">
                         <p class="show-cart-header-text text-center">Total</p>
                     </div>
+                    <div class="header-remove"></div>
                 </div>
                 <div class="show-cart-items">
                     <% const items = Object.values(session.cart.items); %>
@@ -65,6 +66,11 @@
                         </div>
                         <div class="show-total">
                             <p class="show-cart-items-text"><img class="show-cart-rupee-icon" src="/images/rupee.svg"><span><%= items[i].item.price * items[i].qty %></span></p>
+                        </div>
+                        <div class="show-cart-items-row-overlay d-flex align-items-center justify-content-center">
+                            <button class="overlay-remove-btn" data-id="<%= items[i].item._id %>" onclick="removeFromCart(this)">
+                                <img class="cart-item-remove-icon" src="/images/item-delete.svg" alt="delete">
+                            </button>
                         </div>
                     </div>
                     <% } %>
@@ -156,6 +162,55 @@
             }
 
             return true;
+        }
+
+        const removeFromCart = (btn) => {
+            const itemId = btn.getAttribute("data-id");
+            fetch("http://localhost:3000/remove-item", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ itemId })
+            }).then((res) => {
+                return res.json();
+            }).then((f_res) => {
+                if (f_res.code == 500) {
+                    Toastify({
+                        text: f_res.msg,
+                        duration: 2000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        stopOnFocus: true,
+                        avatar: "/images/success-icon.svg",
+                        style: {
+                            background: "#000000",
+                        },
+                        onClick: function () { } // Callback after click
+                    }).showToast();
+                    setTimeout(() => {
+                        window.location.href = "/cart";
+                    }, 1000)
+                }
+                else if (f_res.code == 300) {
+                    Toastify({
+                        text: f_res.msg,
+                        duration: 2000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        stopOnFocus: true,
+                        avatar: "/images/error-icon.svg",
+                        style: {
+                            background: "#000000",
+                        },
+                        onClick: function () { } // Callback after click
+                    }).showToast();
+                }
+            })
         }
 
         const placeOrder = (btn) => {

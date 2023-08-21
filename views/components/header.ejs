@@ -1,6 +1,6 @@
 <!-- navbar start -->
 <% baseUrl = "http://localhost:3000/"; %>
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid col-md-10">
         <a class="navbar-brand d-flex flex-row" href="/">
             <img class="navbar-logo" src="/images/logo.svg" alt="logo">
@@ -46,7 +46,7 @@
                         <img src="<%= user.picture %>" alt="user">
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/orders">Your Orders</a></li>
+                        <li><a class="dropdown-item" href="/orders">My Orders</a></li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </div>
